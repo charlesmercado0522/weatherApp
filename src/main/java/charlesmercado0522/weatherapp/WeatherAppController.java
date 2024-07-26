@@ -3,6 +3,7 @@ package charlesmercado0522.weatherapp;
 import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -18,14 +19,15 @@ import java.util.*;
 
 public class WeatherAppController implements Initializable {
 
-    public String initialURL = "https://api.openweathermap.org/data/2.5/forecast?q=Manila&appid=d2f8ca870fbd6621016b283c711bc4f3&cnt=5&units=metric";
     public Text city;
     public Text country;
     public ImageView img1, img2, img3, img4, img5;
     public Text time1, time2, time3, time4, time5;
     public Text temp1, temp2, temp3, temp4, temp5;
     public Text weather1, weather2, weather3, weather4, weather5;
+    public GridPane gridPane;
 
+    public String initialURL = "https://api.openweathermap.org/data/2.5/forecast?q=Manila&appid=d2f8ca870fbd6621016b283c711bc4f3&cnt=5&units=metric";
     String[] times;
     public JSONObject jsonObject;
     public JSONArray weatherList;
@@ -56,7 +58,6 @@ public class WeatherAppController implements Initializable {
 
     public void setImages(){
         try {
-        String[] filenames = new String[weatherList.size()];
         for (int i = 0; i < weatherList.size(); i++) {
             String temp = weatherList.get(i).toString();
             JSONParser parser = new JSONParser();
@@ -64,14 +65,9 @@ public class WeatherAppController implements Initializable {
             JSONArray weather = (JSONArray) parser.parse(obj.get("weather").toString());
             obj = (JSONObject) parser.parse(weather.getFirst().toString());
             String filename = obj.get("icon").toString() +".png";
-            filenames[i] = filename;
+            ImageView imageView = (ImageView) gridPane.getChildren().get(i);
+            imageView.setImage(new Image(String.valueOf(getClass().getResource("icons/"+filename))));
         }
-        img1.setImage(new Image(Objects.requireNonNull(getClass().getResource("icons/" + filenames[0])).toString()));
-        img2.setImage(new Image(Objects.requireNonNull(getClass().getResource("icons/" + filenames[1])).toString()));
-        img3.setImage(new Image(Objects.requireNonNull(getClass().getResource("icons/" + filenames[2])).toString()));
-        img4.setImage(new Image(Objects.requireNonNull(getClass().getResource("icons/" + filenames[3])).toString()));
-        img5.setImage(new Image(Objects.requireNonNull(getClass().getResource("icons/" + filenames[4])).toString()));
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -79,20 +75,15 @@ public class WeatherAppController implements Initializable {
 
     public void setTemps() {
         try {
-            Double[] temps = new Double[5];
             for (int i = 0; i < weatherList.size(); i++) {
                 String temp = weatherList.get(i).toString();
                 JSONParser parser = new JSONParser();
                 JSONObject obj = (JSONObject) parser.parse(temp);
                 JSONObject main = (JSONObject) obj.get("main");
                 Double temperature = (Double) main.get("temp");
-                temps[i] = temperature;
+                Text text = (Text) gridPane.getChildren().get(10+i);
+                text.setText(temperature + "°");
             }
-            temp1.setText(temps[0] + "°");
-            temp2.setText(temps[1] + "°");
-            temp3.setText(temps[2] + "°");
-            temp4.setText(temps[3] + "°");
-            temp5.setText(temps[4] + "°");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -100,7 +91,6 @@ public class WeatherAppController implements Initializable {
 
     public void setWeather() {
         try {
-            String[] weathers = new String[5];
             for (int i = 0; i < weatherList.size(); i++) {
                 String temp = weatherList.get(i).toString();
                 JSONParser parser = new JSONParser();
@@ -108,24 +98,19 @@ public class WeatherAppController implements Initializable {
                 JSONArray weatherObj = (JSONArray) obj.get("weather");
                 obj = (JSONObject) parser.parse(weatherObj.get(0).toString());
                 String weather = (String) obj.get("main");
-                weathers[i] = weather;
+                Text text = (Text) gridPane.getChildren().get(15+i);
+                text.setText(weather);
             }
-            weather1.setText(weathers[0]);
-            weather2.setText(weathers[1]);
-            weather3.setText(weathers[2]);
-            weather4.setText(weathers[3]);
-            weather5.setText(weathers[4]);
         }catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     public void setTimes(){
-        time1.setText(times[0]);
-        time2.setText(times[1]);
-        time3.setText(times[2]);
-        time4.setText(times[3]);
-        time5.setText(times[4]);
+        for (int i = 0; i < times.length; i++) {
+            Text text = (Text) gridPane.getChildren().get(5+i);
+            text.setText(times[i]);
+        }
     }
 
     public String[] getTimes() {
