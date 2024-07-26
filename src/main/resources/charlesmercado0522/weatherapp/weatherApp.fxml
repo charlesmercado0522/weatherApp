@@ -10,23 +10,18 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="charlesmercado0522.weatherapp.WeatherAppController">
    <children>
-      <Text layoutX="14.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="City">
+      <Text fx:id="city" layoutX="14.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="City">
          <font>
             <Font name="System Bold" size="42.0" />
 
          </font>
       </Text>
-      <Text layoutX="15.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Country">
+      <Text fx:id="country" layoutX="15.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Country">
          <font>
             <Font name="System Bold" size="22.0" />
          </font>
       </Text>
-      <Text layoutX="15.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Text>
-      <GridPane layoutX="12.0" layoutY="115.0" prefHeight="212.0" prefWidth="576.0">
+      <GridPane layoutX="12.0" layoutY="94.0" prefHeight="212.0" prefWidth="576.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="294.0" minWidth="10.0" prefWidth="291.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="284.0" />
@@ -41,99 +36,89 @@
             <RowConstraints maxHeight="101.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ImageView fitHeight="83.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER" />
-            <ImageView fitHeight="83.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER" />
-            <ImageView fitHeight="83.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER" />
-            <ImageView fitHeight="83.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER" />
-            <ImageView fitHeight="83.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Day1" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <ImageView fx:id="img1" fitHeight="83.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER" />
+            <ImageView fx:id="img2" fitHeight="83.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER" />
+            <ImageView fx:id="img3" fitHeight="83.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER" />
+            <ImageView fx:id="img4" fitHeight="83.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER" />
+            <ImageView fx:id="img5" fitHeight="83.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER" />
+            <Text fx:id="time1" strokeType="OUTSIDE" strokeWidth="0.0" text="Time1" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Day2" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <Text fx:id="time2" strokeType="OUTSIDE" strokeWidth="0.0" text="Time2" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Day3" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <Text fx:id="time3" strokeType="OUTSIDE" strokeWidth="0.0" text="Time3" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Day4" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <Text fx:id="time4" strokeType="OUTSIDE" strokeWidth="0.0" text="Time4" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Day5" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <Text fx:id="time5" strokeType="OUTSIDE" strokeWidth="0.0" text="Time5" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Temp1: " textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+            <Text fx:id="temp1" strokeType="OUTSIDE" strokeWidth="0.0" text="Temp1: " textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <font>
                   <Font size="12.0" />
                </font>
             </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Temp2: " textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+            <Text fx:id="temp2" strokeType="OUTSIDE" strokeWidth="0.0" text="Temp2: " textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <font>
                   <Font size="12.0" />
                </font>
             </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Temp3: " textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+            <Text fx:id="temp3" strokeType="OUTSIDE" strokeWidth="0.0" text="Temp3: " textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <font>
                   <Font size="12.0" />
                </font>
             </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Temp4:" textAlignment="CENTER" wrappingWidth="39.708984375" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+            <Text fx:id="temp4" strokeType="OUTSIDE" strokeWidth="0.0" text="Temp4:" textAlignment="CENTER" wrappingWidth="39.708984375" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <font>
                   <Font size="12.0" />
                </font>
             </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Temp5:" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+            <Text fx:id="temp5" strokeType="OUTSIDE" strokeWidth="0.0" text="Temp5:" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <font>
                   <Font size="12.0" />
                </font>
             </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Humidity1:" textAlignment="CENTER" wrappingWidth="121.291015625" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3">
+            <Text fx:id="weather1" strokeType="OUTSIDE" strokeWidth="0.0" text="weather1" textAlignment="CENTER" wrappingWidth="121.291015625" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3">
                <font>
                   <Font size="12.0" />
                </font>
             </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Humidity2:" textAlignment="CENTER" wrappingWidth="116.708984375" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3">
+            <Text fx:id="weather2" strokeType="OUTSIDE" strokeWidth="0.0" text="weather2" textAlignment="CENTER" wrappingWidth="116.708984375" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3">
                <font>
                   <Font size="12.0" />
                </font>
             </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Humidity3:" textAlignment="CENTER" wrappingWidth="115.072265625" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3">
+            <Text fx:id="weather3" strokeType="OUTSIDE" strokeWidth="0.0" text="weather3" textAlignment="CENTER" wrappingWidth="115.072265625" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3">
                <font>
                   <Font size="12.0" />
                </font>
             </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Humidity4:" textAlignment="CENTER" wrappingWidth="115.224609375" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3">
+            <Text fx:id="weather4" strokeType="OUTSIDE" strokeWidth="0.0" text="weather4" textAlignment="CENTER" wrappingWidth="115.224609375" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3">
                <font>
                   <Font size="12.0" />
                </font>
             </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Humidity5:" textAlignment="CENTER" wrappingWidth="114.990234375" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3">
+            <Text fx:id="weather5" strokeType="OUTSIDE" strokeWidth="0.0" text="weather5" textAlignment="CENTER" wrappingWidth="114.990234375" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3">
                <font>
                   <Font size="12.0" />
                </font>
             </Text>
          </children>
       </GridPane>
-      <Text layoutX="15.0" layoutY="361.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Humidity">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </Text>
-      <Text layoutX="15.0" layoutY="380.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wind">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </Text>
-      <Text layoutX="15.0" layoutY="342.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Today:">
+      <Text layoutX="15.0" layoutY="360.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Note: This is a forecast for the next 15 hours">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
