@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import org.json.simple.JSONArray;
@@ -62,7 +63,7 @@ public class WeatherAppController implements Initializable {
 
     @FXML
     public void getWeather() {
-        String cityName = cityTextField.getText();
+        String cityName = cityTextField.getText().replaceAll(" ", "+");
         String apiURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=" + apiKey + "&cnt=5&units=metric";
 
         jsonObject = parseJSONFromAPIResponse(apiURL);
@@ -77,6 +78,15 @@ public class WeatherAppController implements Initializable {
         } else {
             System.out.println("Error: Couldn't retrieve weather data.");
         }
+    }
+
+
+    public void checkIfEnterPressed() {
+        cityTextField.setOnKeyPressed(keyEvent -> {
+            if(keyEvent.getCode() == KeyCode.ENTER){
+                getWeather();
+            }
+        });
     }
 
     public void setDetails() {
@@ -115,7 +125,7 @@ public class WeatherAppController implements Initializable {
                 JSONParser parser = new JSONParser();
                 JSONObject obj = (JSONObject) parser.parse(temp);
                 JSONObject main = (JSONObject) obj.get("main");
-                Double temperature = (Double) main.get("temp");
+                String temperature = main.get("temp").toString();
                 Text text = (Text) gridPane.getChildren().get(10 + i);
                 text.setText(temperature + "°");
             }
