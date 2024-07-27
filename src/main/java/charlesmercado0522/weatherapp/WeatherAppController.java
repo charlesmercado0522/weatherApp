@@ -1,6 +1,9 @@
 package charlesmercado0522.weatherapp;
 
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -15,26 +18,39 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.util.ResourceBundle;
+import java.util.Scanner;
 
 public class WeatherAppController implements Initializable {
 
-    public Text city;
-    public Text country;
-    public ImageView img1, img2, img3, img4, img5;
-    public Text time1, time2, time3, time4, time5;
-    public Text temp1, temp2, temp3, temp4, temp5;
-    public Text weather1, weather2, weather3, weather4, weather5;
-    public GridPane gridPane;
+    @FXML
+    private TextField cityTextField;
+    @FXML
+    private Button getWeatherButton;
+    @FXML
+    private Text city;
+    @FXML
+    private Text country;
+    @FXML
+    private ImageView img1, img2, img3, img4, img5;
+    @FXML
+    private Text time1, time2, time3, time4, time5;
+    @FXML
+    private Text temp1, temp2, temp3, temp4, temp5;
+    @FXML
+    private Text weather1, weather2, weather3, weather4, weather5;
+    @FXML
+    private GridPane gridPane;
 
-    public String initialURL = "https://api.openweathermap.org/data/2.5/forecast?q=Manila&appid=d2f8ca870fbd6621016b283c711bc4f3&cnt=5&units=metric";
-    String[] times;
-    public JSONObject jsonObject;
-    public JSONArray weatherList;
+    private String apiKey = "d2f8ca870fbd6621016b283c711bc4f3";
+    private String initialURL = "https://api.openweathermap.org/data/2.5/forecast?q=Manila&appid=" + apiKey + "&cnt=5&units=metric";
+    private String[] times;
+    private JSONObject jsonObject;
+    private JSONArray weatherList;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        jsonObject = parseJSONFromAPIResponse();
+        jsonObject = parseJSONFromAPIResponse(initialURL);
         weatherList = getWeatherList();
         times = getTimes();
         setImages();
@@ -42,6 +58,25 @@ public class WeatherAppController implements Initializable {
         setTemps();
         setWeather();
         setDetails();
+    }
+
+    @FXML
+    public void getWeather() {
+        String cityName = cityTextField.getText();
+        String apiURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=" + apiKey + "&cnt=5&units=metric";
+
+        jsonObject = parseJSONFromAPIResponse(apiURL);
+        if (jsonObject != null) {
+            weatherList = getWeatherList();
+            times = getTimes();
+            setImages();
+            setTimes();
+            setTemps();
+            setWeather();
+            setDetails();
+        } else {
+            System.out.println("Error: Couldn't retrieve weather data.");
+        }
     }
 
     public void setDetails() {
@@ -56,18 +91,18 @@ public class WeatherAppController implements Initializable {
         }
     }
 
-    public void setImages(){
+    public void setImages() {
         try {
-        for (int i = 0; i < weatherList.size(); i++) {
-            String temp = weatherList.get(i).toString();
-            JSONParser parser = new JSONParser();
-            JSONObject obj = (JSONObject) parser.parse(temp);
-            JSONArray weather = (JSONArray) parser.parse(obj.get("weather").toString());
-            obj = (JSONObject) parser.parse(weather.getFirst().toString());
-            String filename = obj.get("icon").toString() +".png";
-            ImageView imageView = (ImageView) gridPane.getChildren().get(i);
-            imageView.setImage(new Image(String.valueOf(getClass().getResource("icons/"+filename))));
-        }
+            for (int i = 0; i < weatherList.size(); i++) {
+                String temp = weatherList.get(i).toString();
+                JSONParser parser = new JSONParser();
+                JSONObject obj = (JSONObject) parser.parse(temp);
+                JSONArray weather = (JSONArray) parser.parse(obj.get("weather").toString());
+                obj = (JSONObject) parser.parse(weather.get(0).toString());
+                String filename = obj.get("icon").toString() + ".png";
+                ImageView imageView = (ImageView) gridPane.getChildren().get(i);
+                imageView.setImage(new Image(String.valueOf(getClass().getResource("icons/" + filename))));
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -81,7 +116,7 @@ public class WeatherAppController implements Initializable {
                 JSONObject obj = (JSONObject) parser.parse(temp);
                 JSONObject main = (JSONObject) obj.get("main");
                 Double temperature = (Double) main.get("temp");
-                Text text = (Text) gridPane.getChildren().get(10+i);
+                Text text = (Text) gridPane.getChildren().get(10 + i);
                 text.setText(temperature + "°");
             }
         } catch (Exception e) {
@@ -98,17 +133,17 @@ public class WeatherAppController implements Initializable {
                 JSONArray weatherObj = (JSONArray) obj.get("weather");
                 obj = (JSONObject) parser.parse(weatherObj.get(0).toString());
                 String weather = (String) obj.get("main");
-                Text text = (Text) gridPane.getChildren().get(15+i);
+                Text text = (Text) gridPane.getChildren().get(15 + i);
                 text.setText(weather);
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void setTimes(){
+    public void setTimes() {
         for (int i = 0; i < times.length; i++) {
-            Text text = (Text) gridPane.getChildren().get(5+i);
+            Text text = (Text) gridPane.getChildren().get(5 + i);
             text.setText(times[i]);
         }
     }
@@ -133,28 +168,28 @@ public class WeatherAppController implements Initializable {
         return null;
     }
 
-    public JSONArray getWeatherList(){
+    public JSONArray getWeatherList() {
         try {
             return (JSONArray) jsonObject.get("list");
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
     }
 
-    public JSONObject parseJSONFromAPIResponse(){
+    public JSONObject parseJSONFromAPIResponse(String apiURL) {
         try {
             JSONParser parser = new JSONParser();
-            return (JSONObject) parser.parse(readAPIResponse());
+            return (JSONObject) parser.parse(readAPIResponse(apiURL));
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    private String readAPIResponse(){
+    private String readAPIResponse(String apiURL) {
         try {
-            HttpURLConnection apiConnection = fetchAPIResponse(initialURL);
+            HttpURLConnection apiConnection = fetchAPIResponse(apiURL);
             if (apiConnection.getResponseCode() != 200) {
                 System.out.println("Connection Failed");
                 return null;
@@ -162,7 +197,7 @@ public class WeatherAppController implements Initializable {
             StringBuilder jsonRes = new StringBuilder();
             Scanner scanner = new Scanner(apiConnection.getInputStream());
 
-            while (scanner.hasNext()){
+            while (scanner.hasNext()) {
                 jsonRes.append(scanner.nextLine());
             }
             scanner.close();
@@ -173,14 +208,13 @@ public class WeatherAppController implements Initializable {
         return null;
     }
 
-    private HttpURLConnection fetchAPIResponse(String urlString){
+    private HttpURLConnection fetchAPIResponse(String urlString) {
         try {
             URL url = new URL(urlString);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("GET");
-
             return con;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;

@@ -1,0 +1,21 @@
+/* style.css */
+.root {
+    -fx-background-color: #f0f0f0;
+}
+
+.label {
+    -fx-font-size: 16px;
+    -fx-text-fill: #333333;
+}
+
+.button {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}
+
+.textfield {
+    -fx-background-color: white;
+    -fx-border-color: #cccccc;
+    -fx-padding: 5px;
+}
