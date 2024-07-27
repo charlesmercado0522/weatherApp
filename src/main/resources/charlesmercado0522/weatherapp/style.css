@@ -14,6 +14,10 @@
     -fx-font-size: 14px;
 }
 
+.button: hover {
+    -fx-background-color: #9fe0a2;
+}
+
 .textfield {
     -fx-background-color: white;
     -fx-border-color: #cccccc;
