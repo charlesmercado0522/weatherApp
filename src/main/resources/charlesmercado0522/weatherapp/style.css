@@ -1,25 +1,30 @@
 /* style.css */
-.root {
-    -fx-background-color: #f0f0f0;
+.gridPane {
+    -fx-background-color: #6B6A6A;
+}
+
+.anchorPane {
+    -fx-background-color: #464545;
 }
 
 .label {
     -fx-font-size: 16px;
-    -fx-text-fill: #333333;
+    -fx-text-fill: white;
 }
 
 .button {
-    -fx-background-color: #4CAF50;
+    -fx-background-color: #6B6A6A;
     -fx-text-fill: white;
     -fx-font-size: 14px;
 }
 
 .button: hover {
-    -fx-background-color: #9fe0a2;
+    -fx-background-color: #111111;
 }
 
+
 .textfield {
-    -fx-background-color: white;
+    -fx-background-color: #6B6A6A;
     -fx-border-color: #cccccc;
     -fx-padding: 5px;
 }
