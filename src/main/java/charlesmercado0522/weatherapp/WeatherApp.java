@@ -11,6 +11,7 @@ public class WeatherApp extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("weatherApp.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setScene(scene);
+        stage.setTitle("Weather for the next 24 hours");
         stage.show();
     }
 

@@ -1,15 +1,11 @@
 package charlesmercado0522.weatherapp;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -28,7 +24,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
-public class WeatherAppController implements Initializable {
+public class WeatherAppNextController implements Initializable {
 
 
     @FXML
@@ -46,17 +42,7 @@ public class WeatherAppController implements Initializable {
     private JSONObject jsonObject;
     private JSONArray weatherList;
 
-    int idx = 0;
-
-    public void open24HrAfter24() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("weatherAppNext.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.setTitle("Weather after the initial 24 hours");
-        stage.show();
-    }
-
+    int idx = 7;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

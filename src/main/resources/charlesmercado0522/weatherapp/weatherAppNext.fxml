@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="821.0" styleClass="anchorPane" stylesheets="@style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="charlesmercado0522.weatherapp.WeatherAppController">
+<AnchorPane prefHeight="400.0" prefWidth="821.0" styleClass="anchorPane" stylesheets="@style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="charlesmercado0522.weatherapp.WeatherAppNextController">
    <children>
       <Text fx:id="city" fill="WHITE" layoutX="14.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="City">
          <font>
@@ -22,7 +22,7 @@
             <Font name="System Bold" size="22.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="15.0" layoutY="369.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Note: This is a forecast for the next 24 hours">
+      <Text fill="WHITE" layoutX="15.0" layoutY="369.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Note: This is a forecast for the next 24 hours after initial 24 hour prediction">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -188,6 +188,5 @@
             </Text>
          </children>
       </GridPane>
-      <Button layoutX="648.0" layoutY="350.0" mnemonicParsing="false" text="Predict up to 48 Hours" onMouseClicked="#open24HrAfter24" />
    </children>
 </AnchorPane>
