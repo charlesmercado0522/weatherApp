@@ -6,4 +6,5 @@ module charlesmercado0522.weatherapp {
 
     opens charlesmercado0522.weatherapp to javafx.fxml;
     exports charlesmercado0522.weatherapp;
+    exports charlesmercado0522.weatherapp.types;
 }

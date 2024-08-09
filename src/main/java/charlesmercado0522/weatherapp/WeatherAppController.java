@@ -62,7 +62,7 @@ public class WeatherAppController implements Initializable {
         Scene scene = new Scene(fxmlLoader.load());
         Stage stage = new Stage();
         stage.setScene(scene);
-        stage.setTitle("Weather after the initial 24 hours");
+        stage.setTitle("School Weather Advisories");
         stage.show();
     }
     @Override
