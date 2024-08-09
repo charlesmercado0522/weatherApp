@@ -57,7 +57,14 @@ public class WeatherAppController implements Initializable {
         stage.show();
     }
 
-
+    public void openAdvisory() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("schoolAdvisory.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("Weather after the initial 24 hours");
+        stage.show();
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
